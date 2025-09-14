@@ -1,0 +1,576 @@
+<!DOCTYPE html><html lang="default" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>杂题乱做1 | lomit's Blog</title><meta name="keywords" content="blog, technology, personal, thoughts, programming"><meta name="author" content="lomit"><meta name="copyright" content="lomit"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="杂题乱做1"><meta name="application-name" content="杂题乱做1"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="杂题乱做1"><meta property="og:url" content="https://lomit0315.github.io/blog/2025/05/30/%E6%9D%82%E9%A2%98%E4%B9%B1%E5%81%9A1/index.html"><meta property="og:site_name" content="lomit's Blog"><meta property="og:description" content="主要是以前写过的一些luogu上的蓝题，口胡+补一下简易题解 P1053 [NOIP 2005 提高组] 篝火晚会不然发现，最终状态就两种，从 $1$ 开始构造之后就顺时针和逆时针两种情况。但是环是可以旋转的，所以一共会有 $2n$ 种情况，怎么快速判断旋转多少会让答案最优呢？ 只需要让最终的状态与"><meta property="og:locale" content="default"><meta property="og:image" content="https://avatars.githubusercontent.com/u/186526148?v=4"><meta property="article:author" content="lomit"><meta property="article:tag" content="blog, technology, personal, thoughts, programming"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://avatars.githubusercontent.com/u/186526148?v=4"><meta name="description" content="主要是以前写过的一些luogu上的蓝题，口胡+补一下简易题解 P1053 [NOIP 2005 提高组] 篝火晚会不然发现，最终状态就两种，从 $1$ 开始构造之后就顺时针和逆时针两种情况。但是环是可以旋转的，所以一共会有 $2n$ 种情况，怎么快速判断旋转多少会让答案最优呢？ 只需要让最终的状态与"><link rel="shortcut icon" href="/blog/favicon.ico"><link rel="canonical" href="https://lomit0315.github.io/blog/2025/05/30/%E6%9D%82%E9%A2%98%E4%B9%B1%E5%81%9A1/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2024/07/27/125766904/ba62475f396df9de3316a08ed9e65d86_5680958632268053399..png"},
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/blog/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: lomit","link":"链接: ","source":"来源: lomit's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'lomit's Blog',
+  title: '杂题乱做1',
+  postAI: '',
+  pageFillDescription: ', , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , 主要是以前写过的一些上的蓝题口胡补一下简易题解提高组篝火晚会不然发现最终状态就两种从开始构造之后就顺时针和逆时针两种情况但是环是可以旋转的所以一共会有种情况怎么快速判断旋转多少会让答案最优呢只需要让最终的状态与初始状态的每个位置做差看看相同差值的个数最多的是哪一个旋转那么多次就是最佳答案正反都做一遍就好了提高组最优贸易一开始想的是直接缩点然后在上感觉没啥问题看自己以前的代码发现直接一个暴力干过去了闹麻了后来感觉题解说的分层图也很有道理矩阵游戏重新看的时候一开始想着不是直接算一下的数量就好了吗后来点开标签看到了二分图然后就会做了说白了就是考虑单独的某一列发现这一列上的点只能匹配到某一行上面也就是这题实际上是要用行去匹配列对于一个点的位置就让行向列连边拆成二分图跑就完事了不过我的代码貌似是匈牙利算法重建道路一眼树上背包令表示对于当前以为根节点的子树包含个节点的答案初始状态令入度个数就完事了斐波那契公约数经典结论题矩阵乘法加速转移就完事了不记得怎么证明了地震逃生第一眼网络流第二眼看标签又不确定了点开题解发现就是裸的网络流闹麻了花园第一眼看出来状压然后用矩阵优化但是没想出来环怎么处理老了啊看之前写的代码才想起来只需要枚举所有的状态看每个初始状态经历次装转移后仍然回到初始状态的方案数求和就是答案了快餐店代码难度大于思维难度的一题能量采集一眼丁真鉴定为随便做做就完了上一题不必这一题难多了为什么都是蓝硬币购物降大智了一共才种货币先跑个完全背包然后暴力容斥就完事了反素数第一眼搜索注意到答案质因数分解完指数一定是非递增的剪枝一下就完事了奶牛家谱一看数据范围还以为是什么科技题直接就完事了设表示用了个节点层数的方案数随便转移一下做个差就是答案了种树属于是见过一次就会做没见过很难自己出来的题了叫反悔贪心应该也可以用模拟费用流分析现在脑子不好用了看看代码吧国家集训队小的袜子莫队板子题捏模板中国剩余定理曹冲养猪刚好复习一下中国剩余定理提高组引水入城写这题的时候还是初一省赛前呢已经年了啊然而还是没有一眼看出这题的做法最关键的性质就是假设已经有解的情况下对于第一行的每一个蓄水站能覆盖的一定是最后一行的连续一段区间于是乎可以用预处理出若干个区间然后就变成简单的区间覆盖问题了可以直接也可以直接贪心代码是跑路这个数据范围居然没想到本质上就是预处理一个倍增的玩意然后完事了连续攻击游戏一开始以为要按顺序寻思这不就是贪心吗后来发现装备可以随意用然后就懵了有个简单的思路是二分答案然后连边跑网络流判断是否合法然而复杂度会炸看自己以前的代码发现直接用匈牙利算法一条一条路增广就完事了生成字符串一眼枚举第一个不合法的点然后计算左右两边乘起来再加起来左边卡特兰数右边组合数题解貌似又更好的做法转换一下画个图发现从出发斜着走往右上右下然后不能经过只需要在第一次到的时候对称翻转一下发现就变成从开始走的情况了随便推一下组合数即可第一种解法用范德蒙德卷积化简一下应该也是一样的根据期望的线性性直接一次方二次方三次方分别维护随便转移一下就好了注意一次方和二次方的是钦定结尾的期望区间脑子转不动了初中的自己来直接秒了现在想半天老想着先考虑覆盖哪个点然后再求最优区间长度不妨先把每个区间按照长度排个序假设长度从大到小一个一个区间的加入可以用线段树维护覆盖次数如果某个点的覆盖次数达到了就说明可以了然后用加入的区间最长的长度减当前的长度即可用可以很容易实现这样就把最优化问题转换为判定性问题了最小密度路径第一眼没反应过来第二眼发现应该是分数规划二分答案然后每条边的边权最后判断是否有非负路径随便跑跑就完事了物流运输一脸懵我之前是怎么做出来的看题解发现也不是那么好想啊这题有个点就是要想到设表示前天的答案然后处理出一个表示从第天到第天都走同一条路线的最小花费然后就很好了直接用搞一下就好了提高组换教室经典的期望设表示对于前门课选了个当前的选或不选分情况讨论一下即可不难想到首先要一个二分答案考虑如何建图不难发现可以直接让的边权设为别的边设为然后跑最短路看最短路是否即可总的来说思路是挺清晰的最短路可以用也可以双端队列提高组火柴排队降至题首先不难发现在中第高的要对应在中第高的那么可以先将离散化就变成排名了然后设表示数组中第高的在哪个位置设意思就是第个位置的最终要到这个位置然后对求个逆序对就完事了提高组货车运输一下子没反应过来以为是什么网络流树之类的其实就是直接生成树再加上一个倍增就完事了很经典的题的项链经典套路先把询问离线按照右端点排序记表示上一个和种类相同的位置然后每次加入右端点的时候这样就能保证询问一个区间的时候每一个种类的只有第一个出现的有贡献这样就能保证每个种类只贡献一次拿树状数组随便维护一下就好了中国象棋降大智了属于是容易发现其实就是每一行每一列最多放两个一行一行来考虑然后发现其实不用关心前列具体放了哪里只需要知道有几列放了一个几列放了两个就好了可以设表示考虑到行前面一共有列放了一个列放了两个随便转移一下即可卡牌游戏这种程度的居然没看出来脑子不好使了属于是设表示个人坐成一圈第个人开始最后赢的概率假设现在抽到的卡牌为分两种情况讨论随便转移一下即可软件包管理器一眼树剖线段树维护区间覆盖区间求和打表然后思路对了但是实现不记得了的路线把最短路建出来是个求两个的最长公共路径即可不难发现一定是一段连续的随便一下会场预约想了一会感觉可以用珂朵莉树发现其实一个就完事了因为反正不可能重叠随便搞搞我自己的代码貌似是直接树状数组二分出最后一个区间搞的不如园丁的烦恼看到第一眼主席树板子发现确实是可以这么做自己以前的代码是分治不赖刚好复习一下修筑绿化带想到了一个很暴力的做法发现还真是直接对于行和列预处理一堆东西然后行列分别做滑动区间最大值那样子就好了看代码比较容易理解高速公路不难发现答案就是但是不太好维护可以考虑每条边的贡献上面那部分就变成了把式子拆一下发现要维护的只有线段树维护即可跳蚤这题倒是一眼秒了不难发现只要存在两个卡牌是互质的就好了直接容斥即可容斥系数就是莫比乌斯函数大概就是这个亚子余数求和偷瞄一眼标签会了可以改写为然后整除分块就完事了消防局的设立第一眼直接但是感觉有点复杂也不是不能做瞄一眼题解发现可以直接贪心老了脑子转不动了从叶子结点开始贪心每次取最深的叶子然后往它爷爷那里塞一个就完事了提高组解方程没想法闹麻了看代码发现其实就是随便选一个膜数然后大力枚举解然后',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-13 19:39:04',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://avatars.githubusercontent.com/u/186526148?v=4"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/blog/" accesskey="h"><div class="title">lomit's Blog</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/blog/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/blog/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/blog/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/blog/tags/%E4%B8%AA%E4%BA%BA/" style="font-size: 1.05rem;">个人<sup>1</sup></a><a href="/blog/tags/%E5%8F%8D%E6%80%9D/" style="font-size: 1.05rem;">反思<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/blog/archives/2025/05/"><span class="card-archive-list-date">May 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">6</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/blog/archives/2025/01/"><span class="card-archive-list-date">January 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="article-meta tags"></span></div></div><h1 class="post-title" itemprop="name headline">杂题乱做1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2025-05-30T07:58:46.404Z" title="发表于 2025-05-30 02:58:46">2025-05-30</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2025-09-14T00:39:04.362Z" title="更新于 2025-09-13 19:39:04">2025-09-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为United States"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>United States</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src=""></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://lomit0315.github.io/blog/2025/05/30/%E6%9D%82%E9%A2%98%E4%B9%B1%E5%81%9A1/"><header><h1 id="CrawlerTitle" itemprop="name headline">杂题乱做1</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">lomit</span><time itemprop="dateCreated datePublished" datetime="2025-05-30T07:58:46.404Z" title="发表于 2025-05-30 02:58:46">2025-05-30</time><time itemprop="dateCreated datePublished" datetime="2025-09-14T00:39:04.362Z" title="更新于 2025-09-13 19:39:04">2025-09-13</time></header><p>主要是以前写过的一些luogu上的蓝题，口胡+补一下简易题解</p>
+<h3 id="P1053-NOIP-2005-提高组-篝火晚会"><a href="#P1053-NOIP-2005-提高组-篝火晚会" class="headerlink" title="P1053 [NOIP 2005 提高组] 篝火晚会"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1053">P1053 [NOIP 2005 提高组] 篝火晚会</a></h3><p>不然发现，最终状态就两种，从 $1$ 开始构造之后就顺时针和逆时针两种情况。但是环是可以旋转的，所以一共会有 $2n$ 种情况，怎么快速判断旋转多少会让答案最优呢？ 只需要让最终的状态与初始状态的每个位置做差，看看相同差值的个数最多的是哪一个，旋转那么多次就是最佳答案。</p>
+<p>正反都做一遍就好了。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com/paste/fpchzse6">https://www.luogu.com/paste/fpchzse6</a></p>
+<h3 id="P1073-NOIP-2009-提高组-最优贸易"><a href="#P1073-NOIP-2009-提高组-最优贸易" class="headerlink" title="P1073 [NOIP 2009 提高组] 最优贸易"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1073">P1073 [NOIP 2009 提高组] 最优贸易</a></h3><p>一开始想的是直接缩点，然后在 DAG 上 DP，感觉没啥问题</p>
+<p>看自己以前的代码发现直接一个暴力dfs干过去了，闹麻了</p>
+<p>后来感觉题解说的分层图+SPFA也很有道理</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/l1losgoo">https://www.luogu.com.cn/article/l1losgoo</a></p>
+<h3 id="P1129-ZJOI2007-矩阵游戏"><a href="#P1129-ZJOI2007-矩阵游戏" class="headerlink" title="P1129 [ZJOI2007] 矩阵游戏"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1129">P1129 [ZJOI2007] 矩阵游戏</a></h3><p>重新看的时候一开始想着不是直接算一下 $1$ 的数量就好了吗?后来点开标签看到了二分图,然后就会做了. 说白了就是考虑单独的某一列,发现这一列上的点只能匹配到某一行上面,也就是这题实际上是要用行去匹配列. 对于一个点的位置$(i,j)$就让$i$行向$j$列连边,拆成二分图跑Dinic就完事了</p>
+<p>不过我的代码貌似是匈牙利算法</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/h1tkqgk7">https://www.luogu.com.cn/paste/h1tkqgk7</a></p>
+<h3 id="P1272-重建道路"><a href="#P1272-重建道路" class="headerlink" title="P1272 重建道路"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1272">P1272 重建道路</a></h3><p>一眼树上背包</p>
+<p>令 $f[u][s]$ 表示对于当前以$u$为根节点的子树, 包含$s$个节点的答案</p>
+<p>初始状态令$f[u][1]&#x3D;in[u]$ 入度个数就完事了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/v7pp62ll">https://www.luogu.com.cn/paste/v7pp62ll</a></p>
+<h3 id="P1306-斐波那契公约数"><a href="#P1306-斐波那契公约数" class="headerlink" title="P1306 斐波那契公约数"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1306">P1306 斐波那契公约数</a></h3><p>经典结论题<br>$$<br>\gcd(fib_n,fib_m)&#x3D;fib_{\gcd(n,m)}<br>$$<br>矩阵乘法加速转移就完事了,不记得怎么证明了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/pj9lnh95">https://www.luogu.com.cn/paste/pj9lnh95</a></p>
+<h3 id="P1343-地震逃生"><a href="#P1343-地震逃生" class="headerlink" title="P1343 地震逃生"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1343">P1343 地震逃生</a></h3><p>第一眼网络流</p>
+<p>第二眼看标签又不确定了,点开题解发现就是裸的网络流</p>
+<p>闹麻了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/l6r84sku">https://www.luogu.com.cn/paste/l6r84sku</a></p>
+<h3 id="P1357-花园"><a href="#P1357-花园" class="headerlink" title="P1357 花园"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1357">P1357 花园</a></h3><p>第一眼看出来状压dp,然后用矩阵优化</p>
+<p>但是没想出来环怎么处理,老了啊</p>
+<p>看之前写的代码才想起来,只需要枚举所有的状态,看每个初始状态经历$n$次装转移后仍然回到初始状态的方案数求和就是答案了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/9oyltdq2">https://www.luogu.com.cn/paste/9oyltdq2</a></p>
+<h3 id="P1399-NOI2013-快餐店"><a href="#P1399-NOI2013-快餐店" class="headerlink" title="P1399 [NOI2013] 快餐店"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1399">P1399 [NOI2013] 快餐店</a></h3><p>代码难度大于思维难度的一题</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38944163/article/details/89470928">https://blog.csdn.net/qq_38944163/article/details/89470928</a></p>
+<h3 id="P1447-NOI2010-能量采集"><a href="#P1447-NOI2010-能量采集" class="headerlink" title="P1447 [NOI2010] 能量采集"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1447">P1447 [NOI2010] 能量采集</a></h3><p>一眼丁真，鉴定为<br>$$<br>\sum\limits_{i&#x3D;1}^{n}\sum\limits_{j&#x3D;1}^{m} 2\gcd(i,j)-1<br>$$<br>随便做做就完了</p>
+<p>上一题不必这一题难多了，为什么都是蓝？</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/zpoqmbsb">https://www.luogu.com.cn/paste/zpoqmbsb</a></p>
+<h3 id="P1450-HAOI2008-硬币购物"><a href="#P1450-HAOI2008-硬币购物" class="headerlink" title="P1450 [HAOI2008] 硬币购物"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1450">P1450 [HAOI2008] 硬币购物</a></h3><p>降大智了</p>
+<p>一共才4种货币，先跑个完全背包，然后暴力容斥就完事了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/s261ojim">https://www.luogu.com.cn/paste/s261ojim</a></p>
+<h3 id="P1463-POI-2001-HAOI2007-反素数"><a href="#P1463-POI-2001-HAOI2007-反素数" class="headerlink" title="P1463 [POI 2001 ] [HAOI2007] 反素数"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1463">P1463 [POI 2001 ] [HAOI2007] 反素数</a></h3><p>第一眼搜索</p>
+<p>注意到答案质因数分解完指数一定是非递增的</p>
+<p>剪枝一下就完事了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/wc881720">https://www.luogu.com.cn/paste/wc881720</a></p>
+<h3 id="P1472-USACO2-3-奶牛家谱-Cow-Pedigrees"><a href="#P1472-USACO2-3-奶牛家谱-Cow-Pedigrees" class="headerlink" title="P1472 [USACO2.3] 奶牛家谱 Cow Pedigrees"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1472">P1472 [USACO2.3] 奶牛家谱 Cow Pedigrees</a></h3><p>一看数据范围还以为是什么科技题</p>
+<p>直接dp就完事了，设$f[i][j]$表示用了$i$个节点，层数$\le j$的方案数</p>
+<p>随便转移一下，做个差就是答案了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/h4v87qoz">https://www.luogu.com.cn/paste/h4v87qoz</a></p>
+<h3 id="P1484-种树"><a href="#P1484-种树" class="headerlink" title="P1484 种树"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1484">P1484 种树</a></h3><p>属于是见过一次就会做，没见过很难自己yy出来的题了</p>
+<p>叫反悔贪心，应该也可以用模拟费用流分析，现在脑子不好用了</p>
+<p>看看代码吧</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/5v8danb9">https://www.luogu.com.cn/paste/5v8danb9</a></p>
+<h3 id="P1494-国家集训队-小-Z-的袜子"><a href="#P1494-国家集训队-小-Z-的袜子" class="headerlink" title="P1494 [国家集训队] 小 Z 的袜子"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1494">P1494 [国家集训队] 小 Z 的袜子</a></h3><p>莫队板子题捏</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/4z8luzi2">https://www.luogu.com.cn/paste/4z8luzi2</a></p>
+<h3 id="P1495-【模板】中国剩余定理（CRT）-曹冲养猪"><a href="#P1495-【模板】中国剩余定理（CRT）-曹冲养猪" class="headerlink" title="P1495 【模板】中国剩余定理（CRT）&#x2F; 曹冲养猪"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1495">P1495 【模板】中国剩余定理（CRT）&#x2F; 曹冲养猪</a></h3><p>刚好复习一下中国剩余定理</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38944163/article/details/85677874">https://blog.csdn.net/qq_38944163/article/details/85677874</a></p>
+<h3 id="P1514-NOIP-2010-提高组-引水入城"><a href="#P1514-NOIP-2010-提高组-引水入城" class="headerlink" title="P1514 [NOIP 2010 提高组] 引水入城"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1514">P1514 [NOIP 2010 提高组] 引水入城</a></h3><p>写这题的时候还是初一省赛前呢，已经7年了啊</p>
+<p><del>然而还是没有一眼看出这题的做法</del></p>
+<p>最关键的性质就是假设已经有解的情况下，对于第一行的每一个蓄水站，能覆盖的一定是最后一行的连续一段区间，于是乎可以用dfs预处理出若干个区间，然后就变成简单的区间覆盖问题了</p>
+<p>可以直接DP，也可以直接贪心</p>
+<p>代码是dp</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/wjvdr6ho">https://www.luogu.com.cn/paste/wjvdr6ho</a></p>
+<h3 id="P1613-跑路"><a href="#P1613-跑路" class="headerlink" title="P1613 跑路"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1613">P1613 跑路</a></h3><p>这个数据范围居然没想到floyd，本质上就是预处理一个倍增的玩意，然后floyd完事了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/solution/P1613">https://www.luogu.com.cn/problem/solution/P1613</a></p>
+<h3 id="P1640-SCOI2010-连续攻击游戏"><a href="#P1640-SCOI2010-连续攻击游戏" class="headerlink" title="P1640 [SCOI2010] 连续攻击游戏"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1640">P1640 [SCOI2010] 连续攻击游戏</a></h3><p>一开始以为要按顺序，寻思这不就是贪心吗</p>
+<p>后来发现装备可以随意用，然后就懵了</p>
+<p>有个简单的思路是，二分答案，然后连边跑网络流判断是否合法</p>
+<p>然而复杂度会炸</p>
+<p>看自己以前的代码发现直接用匈牙利算法，一条一条路增广就完事了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/d6irkvj2">https://www.luogu.com.cn/paste/d6irkvj2</a></p>
+<h3 id="P1641-SCOI2010-生成字符串"><a href="#P1641-SCOI2010-生成字符串" class="headerlink" title="P1641 [SCOI2010] 生成字符串"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1641">P1641 [SCOI2010] 生成字符串</a></h3><p>一眼枚举第一个不合法的点，然后计算左右两边乘起来再加起来</p>
+<p>左边卡特兰数，右边组合数</p>
+<p><a target="_blank" rel="noopener" href="https://ctz45562.github.io/2019/05/30/%E6%B4%9B%E8%B0%B7-P1641-SCOI2010-%E7%94%9F%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2/">https://ctz45562.github.io/2019/05/30/%E6%B4%9B%E8%B0%B7-P1641-SCOI2010-%E7%94%9F%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2/</a></p>
+<p>题解貌似又更好的做法，转换一下，画个图</p>
+<p>发现从$(0,0)$出发斜着走，$1$往右上，$0$右下</p>
+<p>然后不能经过$y&#x3D;-1$,只需要在第一次到$y&#x3D;-1$的时候对称翻转一下</p>
+<p>发现就变成从$(0,-2)$开始走的情况了，随便推一下组合数即可</p>
+<p>第一种解法用范德蒙德卷积化简一下应该也是一样的</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/l6rhuphf">https://www.luogu.com.cn/paste/l6rhuphf</a></p>
+<h3 id="P1654-OSU"><a href="#P1654-OSU" class="headerlink" title="P1654 OSU!"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1654">P1654 OSU!</a></h3><p>根据期望的线性性，直接一次方，二次方，三次方分别维护</p>
+<p>随便转移一下就好了</p>
+<p>注意一次方和二次方的是钦定$i$ 结尾的期望</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/j2aibvlf">https://www.luogu.com.cn/paste/j2aibvlf</a></p>
+<h3 id="P1712-NOI2016-区间"><a href="#P1712-NOI2016-区间" class="headerlink" title="P1712 [NOI2016] 区间"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1712">P1712 [NOI2016] 区间</a></h3><p>脑子转不动了，初中的自己来直接秒了，现在想半天</p>
+<p>老想着先考虑覆盖哪个点，然后再求最优区间长度</p>
+<p>不妨先把每个区间按照长度排个序，假设长度从大到小</p>
+<p>一个一个区间的加入，可以用线段树维护覆盖次数，如果某个点的覆盖次数达到$m$了就说明可以了</p>
+<p>然后用加入的区间最长的长度减当前的长度即可</p>
+<p>用two-pointer可以很容易实现</p>
+<p>这样就把最优化问题转换为判定性问题了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/yuai99ca">https://www.luogu.com.cn/paste/yuai99ca</a></p>
+<h3 id="P1730-最小密度路径"><a href="#P1730-最小密度路径" class="headerlink" title="P1730 最小密度路径"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1730">P1730 最小密度路径</a></h3><p>第一眼没反应过来</p>
+<p>第二眼发现应该是0&#x2F;1分数规划</p>
+<p>二分答案$ANS$，然后每条边的边权 $- ANS$ 最后判断是否有非负路径</p>
+<p>SPFA 随便跑跑就完事了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/owdsufg9">https://www.luogu.com.cn/paste/owdsufg9</a></p>
+<h3 id="P1772-ZJOI2006-物流运输"><a href="#P1772-ZJOI2006-物流运输" class="headerlink" title="P1772 [ZJOI2006] 物流运输"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1772">P1772 [ZJOI2006] 物流运输</a></h3><p>一脸懵b，我之前是怎么做出来的？</p>
+<p>看题解发现也不是那么好想啊这题</p>
+<p>有个点就是要想到设$dp[i]$表示前$i$ 天的答案</p>
+<p>然后处理出一个$cost[i][j]$表示从第$i$天到第$j$ 天都走同一条路线的最小花费</p>
+<p>然后就很好DP了</p>
+<p>$cost$直接用SPFA搞一下就好了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/xopmnix3">https://www.luogu.com.cn/paste/xopmnix3</a></p>
+<h3 id="P1850-NOIP-2016-提高组-换教室"><a href="#P1850-NOIP-2016-提高组-换教室" class="headerlink" title="P1850 [NOIP 2016 提高组] 换教室"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1850">P1850 [NOIP 2016 提高组] 换教室</a></h3><p>经典的期望DP</p>
+<p>设$dp[i][j][0&#x2F;1]$表示对于前$i$门课，选了$j$个，当前的选或不选</p>
+<p>分情况讨论一下dp即可</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/kjsm64ha">https://www.luogu.com.cn/paste/kjsm64ha</a></p>
+<h3 id="P1948-USACO08JAN-Telephone-Lines-S"><a href="#P1948-USACO08JAN-Telephone-Lines-S" class="headerlink" title="P1948 [USACO08JAN] Telephone Lines S"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1948">P1948 [USACO08JAN] Telephone Lines S</a></h3><p>不难想到首先要一个二分答案</p>
+<p>考虑如何建图，不难发现可以直接让&lt;&#x3D;mid的边权设为0，别的边设为1，然后跑最短路，看最短路是否$&lt;&#x3D;k$即可。总的来说思路是挺清晰的，最短路可以用spfa, 也可以双端队列bfs</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/3v6ojw0x">https://www.luogu.com.cn/paste/3v6ojw0x</a></p>
+<h3 id="P1966-NOIP-2013-提高组-火柴排队"><a href="#P1966-NOIP-2013-提高组-火柴排队" class="headerlink" title="P1966 [NOIP 2013 提高组] 火柴排队"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1966">P1966 [NOIP 2013 提高组] 火柴排队</a></h3><p>降至题</p>
+<p>首先不难发现，在$a$中第$i$高的要对应在$b$中第$i$高的</p>
+<p>那么可以先将$a,b$离散化,就变成排名了</p>
+<p>然后设$py[i]$表示$a$数组中第$i$高的在哪个位置</p>
+<p>设$p[i] &#x3D; py[b[i]]$ 意思就是第$i$个位置的最终要到$py[b[i]]$这个位置</p>
+<p>然后对$p$求个逆序对就完事了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/qirufjer">https://www.luogu.com.cn/paste/qirufjer</a></p>
+<h3 id="P1967-NOIP-2013-提高组-货车运输"><a href="#P1967-NOIP-2013-提高组-货车运输" class="headerlink" title="P1967 [NOIP 2013 提高组] 货车运输"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1967">P1967 [NOIP 2013 提高组] 货车运输</a></h3><p>一下子没反应过来，以为是什么网络流树之类的</p>
+<p>其实就是直接kruskal生成树，再加上一个倍增就完事了</p>
+<p>很经典的题</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/jwuw2o2o">https://www.luogu.com.cn/paste/jwuw2o2o</a></p>
+<h3 id="P1972-SDOI2009-HH的项链"><a href="#P1972-SDOI2009-HH的项链" class="headerlink" title="P1972 [SDOI2009] HH的项链"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1972">P1972 [SDOI2009] HH的项链</a></h3><p>经典套路</p>
+<p>先把询问离线，按照右端点排序</p>
+<p>记$pre[i]$表示上一个和$i$种类相同的位置</p>
+<p>然后每次加入右端点的时候$add(i,1),add(pre[i],-1)$这样就能保证询问一个区间的时候，每一个种类的只有第一个出现的有贡献，这样就能保证每个种类只贡献一次</p>
+<p>拿树状数组随便维护一下就好了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/mz2ke5ag">https://www.luogu.com.cn/paste/mz2ke5ag</a></p>
+<h3 id="P2051-AHOI2009-中国象棋"><a href="#P2051-AHOI2009-中国象棋" class="headerlink" title="P2051 [AHOI2009] 中国象棋"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2051">P2051 [AHOI2009] 中国象棋</a></h3><p>降大智了属于是</p>
+<p>容易发现其实就是每一行，每一列最多放两个</p>
+<p>一行一行来考虑</p>
+<p>然后发现其实不用关心前$i$ 列具体放了哪里，只需要知道有几列放了一个，几列放了两个就好了</p>
+<p>可以设$f[i][j][k]$表示考虑到$i$行，前面一共有$j$ 列放了一个，$k$列放了两个</p>
+<p>随便转移一下即可</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/rgdxtymz">https://www.luogu.com.cn/paste/rgdxtymz</a></p>
+<h3 id="P2059-JLOI2013-卡牌游戏"><a href="#P2059-JLOI2013-卡牌游戏" class="headerlink" title="P2059 [JLOI2013] 卡牌游戏"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2059">P2059 [JLOI2013] 卡牌游戏</a></h3><p>这种程度的DP居然没看出来</p>
+<p>脑子不好使了属于是</p>
+<p>设$f[i][j]$表示$i$个人坐成一圈，第$1$个人开始，最后$j$赢的概率</p>
+<p>假设现在抽到的卡牌为$pos$</p>
+<p>分两种情况讨论</p>
+<p>$f[i][j] +&#x3D; f[i - 1][i - pos + j] &#x2F; m, (pos &gt; j)$</p>
+<p>$f[i][j] +&#x3D; f[i - 1][j - pos] &#x2F; m, (pos &lt; j)$</p>
+<p>随便转移一下即可</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/xehybpi7">https://www.luogu.com.cn/paste/xehybpi7</a></p>
+<h3 id="P2146-NOI2015-软件包管理器"><a href="#P2146-NOI2015-软件包管理器" class="headerlink" title="P2146 [NOI2015] 软件包管理器"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2146">P2146 [NOI2015] 软件包管理器</a></h3><p>一眼树剖+线段树维护区间覆盖，区间求和</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/dat07wfw">https://www.luogu.com.cn/paste/dat07wfw</a></p>
+<h3 id="P2148-SDOI2009-E-D"><a href="#P2148-SDOI2009-E-D" class="headerlink" title="P2148 [SDOI2009] E&amp;D"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2148">P2148 [SDOI2009] E&amp;D</a></h3><p>打表然后SG，思路对了，但是实现不记得了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/solution/P2148">https://www.luogu.com.cn/problem/solution/P2148</a></p>
+<h3 id="P2149-SDOI2009-Elaxia的路线"><a href="#P2149-SDOI2009-Elaxia的路线" class="headerlink" title="P2149 [SDOI2009] Elaxia的路线"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2149">P2149 [SDOI2009] Elaxia的路线</a></h3><p>把最短路建出来是个dag</p>
+<p>求两个dag的最长公共路径即可</p>
+<p>不难发现一定是一段连续的</p>
+<p>随便dp一下</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/x48kzfld">https://www.luogu.com.cn/paste/x48kzfld</a></p>
+<h3 id="P2161-SHOI2009-会场预约"><a href="#P2161-SHOI2009-会场预约" class="headerlink" title="P2161 [SHOI2009] 会场预约"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2161">P2161 [SHOI2009] 会场预约</a></h3><p>想了一会感觉可以用珂朵莉树</p>
+<p>发现其实一个set就完事了</p>
+<p>因为反正不可能重叠，随便搞搞</p>
+<p>我自己的代码貌似是直接树状数组+二分出最后一个区间搞的</p>
+<p>不如set</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/il8szf5z">https://www.luogu.com.cn/paste/il8szf5z</a></p>
+<h3 id="P2163-SHOI2007-园丁的烦恼"><a href="#P2163-SHOI2007-园丁的烦恼" class="headerlink" title="P2163 [SHOI2007] 园丁的烦恼"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2163">P2163 [SHOI2007] 园丁的烦恼</a></h3><p>看到第一眼主席树板子</p>
+<p>发现确实是可以这么做</p>
+<p>自己以前的代码是CDQ分治</p>
+<p>不赖，刚好复习一下</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/xz3y6ydd">https://www.luogu.com.cn/paste/xz3y6ydd</a></p>
+<h3 id="P2219-HAOI2007-修筑绿化带"><a href="#P2219-HAOI2007-修筑绿化带" class="headerlink" title="P2219 [HAOI2007] 修筑绿化带"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2219">P2219 [HAOI2007] 修筑绿化带</a></h3><p>想到了一个很暴力的做法，发现还真是</p>
+<p>直接对于行和列，预处理一堆东西</p>
+<p>然后行列分别做滑动区间最大值那样子就好了</p>
+<p>看代码比较容易理解</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/bma8oezk">https://www.luogu.com.cn/paste/bma8oezk</a></p>
+<h3 id="P2221-HAOI2012-高速公路"><a href="#P2221-HAOI2012-高速公路" class="headerlink" title="P2221 [HAOI2012] 高速公路"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2221">P2221 [HAOI2012] 高速公路</a></h3><p>不难发现，答案就是</p>
+<p>$\huge \frac{\sum\sum dis[i][j]}{C_{r-l+1}^2}$</p>
+<p>但是不太好维护</p>
+<p>可以考虑每条边的贡献，上面那部分就变成了</p>
+<p>$\large \sum cost[i]<em>(i-l+1)</em>(r-i+1)$</p>
+<p>把式子拆一下发现要维护的只有</p>
+<p>$a[i], a[i]*i, a[i]<em>i</em>i$</p>
+<p>线段树维护即可</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/huj8ii7i">https://www.luogu.com.cn/paste/huj8ii7i</a></p>
+<h3 id="P2231-HNOI2002-跳蚤"><a href="#P2231-HNOI2002-跳蚤" class="headerlink" title="P2231 [HNOI2002] 跳蚤"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2231">P2231 [HNOI2002] 跳蚤</a></h3><p>这题倒是一眼秒了</p>
+<p>不难发现只要存在两个卡牌是互质的就好了</p>
+<p>直接容斥即可，容斥系数就是莫比乌斯函数</p>
+<p>$\large \sum\limits_{d|n} \mu(d)(m&#x2F;d)^n$</p>
+<p>大概就是这个亚子</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/ubt89rm2">https://www.luogu.com.cn/paste/ubt89rm2</a></p>
+<h3 id="P2261-CQOI2007-余数求和"><a href="#P2261-CQOI2007-余数求和" class="headerlink" title="P2261 [CQOI2007] 余数求和"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2261">P2261 [CQOI2007] 余数求和</a></h3><p>偷瞄一眼标签会了</p>
+<p>$k \mod i$ 可以改写为$k - \lfloor \frac{k}{i}\rfloor*i$</p>
+<p>然后整除分块就完事了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/th74g5on">https://www.luogu.com.cn/paste/th74g5on</a></p>
+<h3 id="P2279-HNOI2003-消防局的设立"><a href="#P2279-HNOI2003-消防局的设立" class="headerlink" title="P2279 [HNOI2003] 消防局的设立"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2279">P2279 [HNOI2003] 消防局的设立</a></h3><p>第一眼直接DP，但是感觉有点复杂，也不是不能做</p>
+<p>瞄一眼题解发现可以直接贪心，老了，脑子转不动了</p>
+<p>从叶子结点开始贪心，每次取最深的叶子，然后往它爷爷那里塞一个就完事了</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/cv2yki5g">https://www.luogu.com.cn/article/cv2yki5g</a></p>
+<h3 id="P2312-NOIP-2014-提高组-解方程"><a href="#P2312-NOIP-2014-提高组-解方程" class="headerlink" title="P2312 [NOIP 2014 提高组] 解方程"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2312">P2312 [NOIP 2014 提高组] 解方程</a></h3><p>没想法，闹麻了</p>
+<p>看代码发现其实就是随便选一个膜数，然后大力枚举解然后check</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/zrr1z2o9">https://www.luogu.com.cn/paste/zrr1z2o9</a></p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/blog/" title="头像"><img class="post-copyright__author_img_back" src="https://avatars.githubusercontent.com/u/186526148?v=4" title="头像" alt="头像"><img class="post-copyright__author_img_front" src="https://avatars.githubusercontent.com/u/186526148?v=4" title="头像" alt="头像"></a><div class="post-copyright__author_name">lomit</div><div class="post-copyright__author_desc">Thoughts, Ideas &amp; Adventures</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://lomit0315.github.io/blog/2025/05/30/%E6%9D%82%E9%A2%98%E4%B9%B1%E5%81%9A1/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://lomit0315.github.io/blog/2025/05/30/%E6%9D%82%E9%A2%98%E4%B9%B1%E5%81%9A1/')">杂题乱做1</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://lomit0315.github.io/blog/2025/05/30/%E6%9D%82%E9%A2%98%E4%B9%B1%E5%81%9A1/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=杂题乱做1&amp;url=https://lomit0315.github.io/blog/2025/05/30/%E6%9D%82%E9%A2%98%E4%B9%B1%E5%81%9A1/&amp;pic=" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://lomit0315.github.io/blog" target="_blank">lomit's Blog</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"></div></div></div><div class="post_share"><div class="social-share" data-image="https://avatars.githubusercontent.com/u/186526148?v=4" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/2025/05/30/%E6%9D%82%E9%A2%98%E4%B9%B1%E5%81%9A3/"><img class="prev-cover" src="/blog/" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">杂题乱做3</div></div></a></div><div class="next-post pull-right"><a href="/blog/2025/05/30/%E6%9D%82%E9%A2%98%E4%B9%B1%E5%81%9A2/"><img class="next-cover" src="/blog/" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">杂题乱做2</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src="https://avatars.githubusercontent.com/u/186526148?v=4" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description">A personal blog sharing insights on technology, life, and everything in between</div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#P1053-NOIP-2005-%E6%8F%90%E9%AB%98%E7%BB%84-%E7%AF%9D%E7%81%AB%E6%99%9A%E4%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">P1053 [NOIP 2005 提高组] 篝火晚会</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1073-NOIP-2009-%E6%8F%90%E9%AB%98%E7%BB%84-%E6%9C%80%E4%BC%98%E8%B4%B8%E6%98%93"><span class="toc-number">2.</span> <span class="toc-text">P1073 [NOIP 2009 提高组] 最优贸易</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1129-ZJOI2007-%E7%9F%A9%E9%98%B5%E6%B8%B8%E6%88%8F"><span class="toc-number">3.</span> <span class="toc-text">P1129 [ZJOI2007] 矩阵游戏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1272-%E9%87%8D%E5%BB%BA%E9%81%93%E8%B7%AF"><span class="toc-number">4.</span> <span class="toc-text">P1272 重建道路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1306-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%85%AC%E7%BA%A6%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">P1306 斐波那契公约数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1343-%E5%9C%B0%E9%9C%87%E9%80%83%E7%94%9F"><span class="toc-number">6.</span> <span class="toc-text">P1343 地震逃生</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1357-%E8%8A%B1%E5%9B%AD"><span class="toc-number">7.</span> <span class="toc-text">P1357 花园</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1399-NOI2013-%E5%BF%AB%E9%A4%90%E5%BA%97"><span class="toc-number">8.</span> <span class="toc-text">P1399 [NOI2013] 快餐店</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1447-NOI2010-%E8%83%BD%E9%87%8F%E9%87%87%E9%9B%86"><span class="toc-number">9.</span> <span class="toc-text">P1447 [NOI2010] 能量采集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1450-HAOI2008-%E7%A1%AC%E5%B8%81%E8%B4%AD%E7%89%A9"><span class="toc-number">10.</span> <span class="toc-text">P1450 [HAOI2008] 硬币购物</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1463-POI-2001-HAOI2007-%E5%8F%8D%E7%B4%A0%E6%95%B0"><span class="toc-number">11.</span> <span class="toc-text">P1463 [POI 2001 ] [HAOI2007] 反素数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1472-USACO2-3-%E5%A5%B6%E7%89%9B%E5%AE%B6%E8%B0%B1-Cow-Pedigrees"><span class="toc-number">12.</span> <span class="toc-text">P1472 [USACO2.3] 奶牛家谱 Cow Pedigrees</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1484-%E7%A7%8D%E6%A0%91"><span class="toc-number">13.</span> <span class="toc-text">P1484 种树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1494-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E5%B0%8F-Z-%E7%9A%84%E8%A2%9C%E5%AD%90"><span class="toc-number">14.</span> <span class="toc-text">P1494 [国家集训队] 小 Z 的袜子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1495-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86%EF%BC%88CRT%EF%BC%89-%E6%9B%B9%E5%86%B2%E5%85%BB%E7%8C%AA"><span class="toc-number">15.</span> <span class="toc-text">P1495 【模板】中国剩余定理（CRT）&#x2F; 曹冲养猪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1514-NOIP-2010-%E6%8F%90%E9%AB%98%E7%BB%84-%E5%BC%95%E6%B0%B4%E5%85%A5%E5%9F%8E"><span class="toc-number">16.</span> <span class="toc-text">P1514 [NOIP 2010 提高组] 引水入城</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1613-%E8%B7%91%E8%B7%AF"><span class="toc-number">17.</span> <span class="toc-text">P1613 跑路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1640-SCOI2010-%E8%BF%9E%E7%BB%AD%E6%94%BB%E5%87%BB%E6%B8%B8%E6%88%8F"><span class="toc-number">18.</span> <span class="toc-text">P1640 [SCOI2010] 连续攻击游戏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1641-SCOI2010-%E7%94%9F%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">19.</span> <span class="toc-text">P1641 [SCOI2010] 生成字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1654-OSU"><span class="toc-number">20.</span> <span class="toc-text">P1654 OSU!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1712-NOI2016-%E5%8C%BA%E9%97%B4"><span class="toc-number">21.</span> <span class="toc-text">P1712 [NOI2016] 区间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1730-%E6%9C%80%E5%B0%8F%E5%AF%86%E5%BA%A6%E8%B7%AF%E5%BE%84"><span class="toc-number">22.</span> <span class="toc-text">P1730 最小密度路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1772-ZJOI2006-%E7%89%A9%E6%B5%81%E8%BF%90%E8%BE%93"><span class="toc-number">23.</span> <span class="toc-text">P1772 [ZJOI2006] 物流运输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1850-NOIP-2016-%E6%8F%90%E9%AB%98%E7%BB%84-%E6%8D%A2%E6%95%99%E5%AE%A4"><span class="toc-number">24.</span> <span class="toc-text">P1850 [NOIP 2016 提高组] 换教室</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1948-USACO08JAN-Telephone-Lines-S"><span class="toc-number">25.</span> <span class="toc-text">P1948 [USACO08JAN] Telephone Lines S</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1966-NOIP-2013-%E6%8F%90%E9%AB%98%E7%BB%84-%E7%81%AB%E6%9F%B4%E6%8E%92%E9%98%9F"><span class="toc-number">26.</span> <span class="toc-text">P1966 [NOIP 2013 提高组] 火柴排队</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1967-NOIP-2013-%E6%8F%90%E9%AB%98%E7%BB%84-%E8%B4%A7%E8%BD%A6%E8%BF%90%E8%BE%93"><span class="toc-number">27.</span> <span class="toc-text">P1967 [NOIP 2013 提高组] 货车运输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P1972-SDOI2009-HH%E7%9A%84%E9%A1%B9%E9%93%BE"><span class="toc-number">28.</span> <span class="toc-text">P1972 [SDOI2009] HH的项链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2051-AHOI2009-%E4%B8%AD%E5%9B%BD%E8%B1%A1%E6%A3%8B"><span class="toc-number">29.</span> <span class="toc-text">P2051 [AHOI2009] 中国象棋</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2059-JLOI2013-%E5%8D%A1%E7%89%8C%E6%B8%B8%E6%88%8F"><span class="toc-number">30.</span> <span class="toc-text">P2059 [JLOI2013] 卡牌游戏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2146-NOI2015-%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-number">31.</span> <span class="toc-text">P2146 [NOI2015] 软件包管理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2148-SDOI2009-E-D"><span class="toc-number">32.</span> <span class="toc-text">P2148 [SDOI2009] E&amp;D</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2149-SDOI2009-Elaxia%E7%9A%84%E8%B7%AF%E7%BA%BF"><span class="toc-number">33.</span> <span class="toc-text">P2149 [SDOI2009] Elaxia的路线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2161-SHOI2009-%E4%BC%9A%E5%9C%BA%E9%A2%84%E7%BA%A6"><span class="toc-number">34.</span> <span class="toc-text">P2161 [SHOI2009] 会场预约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2163-SHOI2007-%E5%9B%AD%E4%B8%81%E7%9A%84%E7%83%A6%E6%81%BC"><span class="toc-number">35.</span> <span class="toc-text">P2163 [SHOI2007] 园丁的烦恼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2219-HAOI2007-%E4%BF%AE%E7%AD%91%E7%BB%BF%E5%8C%96%E5%B8%A6"><span class="toc-number">36.</span> <span class="toc-text">P2219 [HAOI2007] 修筑绿化带</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2221-HAOI2012-%E9%AB%98%E9%80%9F%E5%85%AC%E8%B7%AF"><span class="toc-number">37.</span> <span class="toc-text">P2221 [HAOI2012] 高速公路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2231-HNOI2002-%E8%B7%B3%E8%9A%A4"><span class="toc-number">38.</span> <span class="toc-text">P2231 [HNOI2002] 跳蚤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2261-CQOI2007-%E4%BD%99%E6%95%B0%E6%B1%82%E5%92%8C"><span class="toc-number">39.</span> <span class="toc-text">P2261 [CQOI2007] 余数求和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2279-HNOI2003-%E6%B6%88%E9%98%B2%E5%B1%80%E7%9A%84%E8%AE%BE%E7%AB%8B"><span class="toc-number">40.</span> <span class="toc-text">P2279 [HNOI2003] 消防局的设立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2312-NOIP-2014-%E6%8F%90%E9%AB%98%E7%BB%84-%E8%A7%A3%E6%96%B9%E7%A8%8B"><span class="toc-number">41.</span> <span class="toc-text">P2312 [NOIP 2014 提高组] 解方程</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/2025/05/31/%E5%A4%A7%E4%BA%8C%E5%8F%8D%E6%80%9D%E6%80%BB%E7%BB%93/" title="大二反思总结">大二反思总结</a><time datetime="2025-06-01T02:07:56.000Z" title="发表于 2025-05-31 21:07:56">2025-05-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/2025/05/30/ABC367/" title="ABC367">ABC367</a><time datetime="2025-05-30T07:58:46.439Z" title="发表于 2025-05-30 02:58:46">2025-05-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/2025/05/30/%5BAGC020C%5D%20Median%20Sum/" title="[AGC020C] Median Sum">[AGC020C] Median Sum</a><time datetime="2025-05-30T07:58:46.437Z" title="发表于 2025-05-30 02:58:46">2025-05-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/2025/05/30/%E6%9D%82%E9%A2%98%E4%B9%B1%E5%81%9A2/" title="杂题乱做2">杂题乱做2</a><time datetime="2025-05-30T07:58:46.407Z" title="发表于 2025-05-30 02:58:46">2025-05-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/2025/05/30/%E6%9D%82%E9%A2%98%E4%B9%B1%E5%81%9A1/" title="杂题乱做1">杂题乱做1</a><time datetime="2025-05-30T07:58:46.404Z" title="发表于 2025-05-30 02:58:46">2025-05-30</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2020 - 2025 By <a class="footer-bar-link" href="/blog/" title="lomit" target="_blank">lomit</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/" title="archive"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/blog/tags/" title="tag"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/blog/categories/" title="category"><div class="headline">分类</div><div class="length-num">0</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/blog/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/blog/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/blog/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/blog/tags/%E4%B8%AA%E4%BA%BA/" style="font-size: 0.88rem;">个人<sup>1</sup></a><a href="/blog/tags/%E5%8F%8D%E6%80%9D/" style="font-size: 0.88rem;">反思<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 lomit 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.cbd.int/mathjax@3.2.2/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.cbd.int/katex@0.16.0/dist/katex.min.css"><script src="https://cdn.cbd.int/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    anzhiyu.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/blog/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
